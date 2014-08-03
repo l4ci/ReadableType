@@ -1,12 +1,13 @@
 /* Vars
 -------------------------------------------------------------- */
-$font-family-sans: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-$font-family-serif: Georgia,Times,serif;
+$font-family-sans: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+$font-family-serif: 'Source Sans Pro',Georgia,Times,serif;
 
 $color-primary: #C9514E;
 $color-secondary: #16161D;
 
-$breakpoint-m: 900px;
+$breakpoint-l: 1000px;
+$breakpoint-m: 500px;
 
 
 /* Basic Styling
@@ -31,14 +32,72 @@ body{
   text-align: center;
   color: #363636;
 }
-main{
+
+.container{
   display: block;
   margin: 0 auto;
   width: 100%;
-  max-width: 900px;
-  padding: 20px;
+  max-width: 1000px;
   text-align: left;
 }
+
+header{
+  margin: 0;
+  padding: 0;
+  
+  nav{
+    ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li{
+        margin: 0;
+        display: inline-block;
+
+        a{
+          display: block;
+          color: $color-primary;
+          padding: 2rem;
+
+          &:hover{
+            color: darken($color-primary,5%);
+          }
+
+          &.active{
+            background: $color-primary;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer{
+  margin: 0;
+  padding: 2rem;
+  background: lighten($color-secondary,20%);
+  
+  .container{
+    text-align: center;
+    color: #fff;
+  }
+}
+
+main{
+  @extend .container;
+  padding: 20px;
+}
+
+.content{
+
+  &.primary{
+    padding: 2rem;
+    background: $color-primary;
+  }
+}
+
 
 a{
   color: #609CE1;
@@ -82,7 +141,7 @@ h2,.h2{
   font-family: $font-family-serif;
   font-size: 1.5rem;
   line-height: 1.3em;
-  font-weight: 300;
+  font-weight: 400;
   color: $color-secondary;
 
   @media (min-width: $breakpoint-m){
@@ -96,7 +155,7 @@ h3,.h3{
   font-family: $font-family-serif;
   font-size: 1.2rem;
   line-height: 1.3em;
-  font-weight: 300;
+  font-weight: 600;
   color: $color-primary;
 
   @media (min-width: $breakpoint-m){
@@ -199,6 +258,29 @@ h1,h2,h3,h4,h5,h6{
 	margin-top: -1rem;
 }
 
+.btn {
+  color: #FFF;
+  background: $color-primary;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .15em;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 10px 12px 8px;
+  text-align: center;
+  border: 0;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: #FFF;
+    background: darken($color-primary,5%);
+    cursor: pointer
+  }
+}
+
+
 /* Figure
 -------------------------------------------------------------- */
 figure{
@@ -293,6 +375,7 @@ code{
 }
 
 article{
+  @extend .content;
   margin: 2rem 0;
 }
 
@@ -337,14 +420,65 @@ section{
 .col-50{
 	width: 100%;
 
-	@media (min-width: $breakpoint-m){
+	@media (min-width: $breakpoint-l){
 		width: 50%;
   }
 }
 .col-25{
 	width: 100%;
 
-	@media (min-width: $breakpoint-m){
-		width: 25%;
+  @media (min-width: $breakpoint-m){
+    width: 50%;
+  }
+  @media (min-width: $breakpoint-l){
+    width: 25%;
+  }
+}
+.col-33{
+  width: 100%;
+
+  @media (min-width: $breakpoint-m){
+    width: 50%;
+  }
+
+  @media (min-width: $breakpoint-l){
+    width: 33%;
+  }
+}
+
+/* Box
+-------------------------------------------------------------- */
+
+
+.box{
+  float: left;
+  width: 300px;
+  position: relative;
+  margin: 0 1rem 1rem 0;
+  
+  .head-image{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .inner{
+    margin: 0;
+    background: #fff;  
+    padding: 20px;
+  }
+  .postBox,
+  .preBox{
+    background: $color-secondary;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: .75em;
+    letter-spacing: .15em;
+    padding: 10px 20px 8px;
+  }
+  .preBox{
+    display: block;
   }
 }
